@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% load humanize %}
+{% load staticfiles %}
+
+{% block title %}
+    Homepage - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>Hello, Freeshelf!</h1>
+    <p>I am Freeshelf basic.</p>
+    <p>There are {{ number|apnumber }} dogs!
+    {% comment %} <p>{% if number %}Number exists!{% endif %}</p> {% endcomment %}
+{% endblock content %}
