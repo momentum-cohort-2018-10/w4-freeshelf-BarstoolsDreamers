@@ -3,8 +3,6 @@ from django.contrib import admin
 # Register your models here.
 from collection.models import Book
 
-admin.site.register(Book)
-
 
 class BookAdmin(admin.ModelAdmin):
     model = Book
