@@ -7,8 +7,13 @@
 {% endblock title %}
 
 {% block content %}
-    <h1>Hello, Freeshelf!</h1>
+    {% for book in books %}
+    <h2>{{ book.title}}</h2>
+    <p>{{ book.author }}</p>
+    <p>{{ book.description }}</p> 
+    {% endfor %}   
+    {% comment %} <h1>Hello, Freeshelf!</h1>
     <p>I am Freeshelf basic.</p>
-    <p>There are {{ number|apnumber }} dogs!
+    <p>There are {{ number|apnumber }} dogs! {% endcomment %}
     {% comment %} <p>{% if number %}Number exists!{% endif %}</p> {% endcomment %}
 {% endblock content %}

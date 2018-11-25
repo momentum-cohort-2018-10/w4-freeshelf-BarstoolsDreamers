@@ -5,7 +5,7 @@ from collection.models import Book
 
 
 def index(request):
-    books = Book.objects.all()
+    books = Book.objects.all().order_by('date_added')
     return render(request, 'index.html', {
         'books': books,
     })
