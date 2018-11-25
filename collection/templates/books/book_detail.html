@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block title %}
+    {{ book.title }} - {{ block.super }}
+{% endblock title %}
+
+{% block content %}
+    <h1>{{ book.title}}</h1>
+    <h2>{{ book.author }}</h2>
+    <p>{{ book.description }}</p>
+    <p>{{ book.date_added }}</p>  
+{% endblock content %}
