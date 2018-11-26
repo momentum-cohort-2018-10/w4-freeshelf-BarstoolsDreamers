@@ -7,7 +7,8 @@
         Freeshelf 2018
         {% endblock title %}
     </title>
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="https://unpkg.com/tachyons@4.10.0/css/tachyons.min.css" />
+    {% comment %} <link rel="stylesheet" href="{% static 'css/style.css' %}" /> {% endcomment %}
     {% block header %}{% endblock header %}
 </head>
 <body>
@@ -16,22 +17,48 @@
         <nav>
             <ul>
                 <a href="{% url 'home' %}">Home</a>
-                <a href="{% url 'about' %}">About</a>
-                <a href="{% url 'contact' %}">Contact</a>
                 {% if user.is_authenticated %}
-                
-                    <a href="{% url 'auth_logout' %}">Logout</a>
-                
+                <div id="account-menu">
+                    <a class="washed-blue" href="#">Login</a> | <a class="washed-blue" href="#">Register</a> | 
+                        <a class="washed-blue" href="{% url 'auth_logout' %}">Logout</a>
+                </div>
                 {% else %}
-                
-                    <a href="{% url 'auth_login' %}">Login</a>
-                
-                    <a href="{% url 'registration_register' %}">Register</a>
-                
+                <div id="account-menu">
+                    <a class="washed-blue" href="{% url 'auth_login' %}">Login</a> | <a class="washed-blue" href="{% url 'registration_register' %}">Register</a> |
+                        <a class="washed-blue" href="{% url 'auth_logout' %}">Logout</a>
+                </div>
                 {% endif %}
             </ul>
         </nav>
     </header>
+
+    <main>
+    <section id="books">
+    {% load static %}
+      <h2>Library</h2>
+        {% for book in bookList %}
+      <div class="mv3">
+        <div class="normal f3">
+        <img src="/freeshelf/images/{{book.image_files}}">
+        <a href="{{book.url}}">{{book.title}}</a></p>
+        <span class="f4">by {{ book.author}}</span></div>
+        <p class="lh-copy">{{book.description}}</p>
+
+        <div class="flex">
+          <div class="mr2 pr2 bw1 br green">
+            Favorited {{book.}} times
+          </div>
+          <div class="mr2 pr2 bw1 br">
+            Added {{book.date_added}}
+          </div>
+          <div>
+            Categories:
+          </div>
+        </div>
+      </div>
+      {% endfor %}
+    </section>
+  </main>
     {% block content %}{% endblock content %}
     {% block footer %}{% endblock footer %}
 </body>

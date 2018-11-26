@@ -18,15 +18,17 @@ class Command(BaseCommand):
         pass
 
     def handle(self, *args, **options):
-        print("Deleting dogs...")
+        print("Deleting books...")
         Book.objects.all().delete()
         with open(get_path('books.csv'), 'r') as file:
             # os.path.join(settings.BASE_DIR, 'initial_data',
             #     'books.csv')) as file:
             reader = csv.DictReader(file)
+            i = 0
             for row in reader:
+                i += 1
                 book = Book(
-                    title=row['tile'],
+                    title=row['title'],
                     author=row['author'],
                     description=row['description'],
                     slug=row['slug'],
@@ -46,4 +48,4 @@ class Command(BaseCommand):
                 # (os.path.join(settings.BASE.DIR, 'initial_data',
                 #                        row['image'])), 'rb'))
                 book.save()
-        print("Books loaded!")
+        print(f"[i] Books loaded!")

@@ -1,13 +1,13 @@
 from django.shortcuts import render, redirect
 from collection.forms import BookForm
-from collection.models import Book
+from collection.models import Book, BookCategory, MapBookCategory
 
 
 def index(request):
-    books = Book.objects.all().order_by('date_added')
-    return render(request, 'index.html', {
-        'books': books,
-    })
+    bookList = Book.objects.order_by('-title')
+    book_category_list = BookCategory.objects.order_by('-name')
+    context = {'bookList': bookList, 'categoryList': book_category_list}
+    return render(request, 'collection/templates/index.html', context)
 
 
 def book_detail(request, slug):
